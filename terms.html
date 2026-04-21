@@ -26,6 +26,53 @@
             border-radius: 16px;
             padding: 40px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255,255,255,0.95);
+            padding: 4px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            z-index: 10;
+        }
+
+        .lang-switch button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 13px;
+            color: #666;
+            padding: 5px 12px;
+            border-radius: 16px;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .lang-switch button.active {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        .lang-switch .divider {
+            color: #ddd;
+            font-size: 12px;
+            user-select: none;
+        }
+
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
         }
 
         h1 {
@@ -103,6 +150,16 @@
                 padding: 24px;
             }
 
+            .lang-switch {
+                top: 12px;
+                right: 12px;
+            }
+
+            .lang-switch button {
+                font-size: 12px;
+                padding: 4px 10px;
+            }
+
             h1 {
                 font-size: 24px;
             }
@@ -119,105 +176,219 @@
 </head>
 <body>
     <div class="container">
-        <h1>用户协议</h1>
-        <p class="update-date">更新日期：2026年4月12日</p>
-
-        <div class="section">
-            <h2>1. 协议的接受</h2>
-            <p>欢迎使用智能快捷拨号！在使用本应用之前，请您仔细阅读并充分理解本协议的全部内容。</p>
-            <p>您下载、安装、使用本应用即表示您已阅读并同意接受本协议的全部条款。如果您不同意本协议的任何内容，请立即停止使用本应用。</p>
+        <div class="lang-switch">
+            <button id="btn-zh" onclick="setLang('zh')" class="active">中文</button>
+            <span class="divider">|</span>
+            <button id="btn-en" onclick="setLang('en')">EN</button>
         </div>
 
-        <div class="section">
-            <h2>2. 服务说明</h2>
-            <p>智能快捷拨号是一款提供T9智能搜索和拨号功能的iOS应用程序。本应用提供以下主要功能：</p>
-            <ul>
-                <li><strong>T9智能搜索：</strong>支持通过号码、拼音、首字母快速搜索联系人</li>
-                <li><strong>智能推荐：</strong>基于您的拨号习惯提供智能推荐</li>
-                <li><strong>收藏管理：</strong>快速访问常用联系人</li>
-                <li><strong>归属地查询：</strong>显示手机号码归属地信息</li>
-                <li><strong>主题定制：</strong>提供多种界面主题</li>
-            </ul>
-            <p>本应用所有功能均在设备本地运行，不依赖网络服务。</p>
-        </div>
+        <!-- 中文内容 -->
+        <div class="lang-content active" data-lang="zh">
+            <h1>用户协议</h1>
+            <p class="update-date">更新日期：2026年4月12日</p>
 
-        <div class="section">
-            <h2>3. 使用规则</h2>
-            <p>在使用本应用时，您应当遵守以下规则：</p>
-            <ul>
-                <li><strong>合法使用：</strong>仅将本应用用于合法目的，不得用于任何违法或侵权行为</li>
-                <li><strong>个人使用：</strong>本应用仅供个人非商业使用</li>
-                <li><strong>系统限制：</strong>理解并接受iOS系统对第三方拨号应用的限制</li>
-                <li><strong>权限授予：</strong>根据功能需要授予必要的系统权限</li>
-                <li><strong>禁止行为：</strong>不得对本应用进行反向工程、反编译或破解</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>4. iOS系统限制说明</h2>
-            <p>由于iOS系统的安全机制，本应用存在以下限制：</p>
-            <ul>
-                <li><strong>拨号确认：</strong>点击联系人后需在系统拨号界面再次确认才能拨出</li>
-                <li><strong>通话记录：</strong>无法获取系统的通话记录，智能推荐仅基于应用内操作</li>
-                <li><strong>后台限制：</strong>应用在后台时功能受限</li>
-            </ul>
-            <p>这些限制是iOS系统对所有第三方拨号应用的统一要求，并非本应用的缺陷。</p>
-        </div>
-
-        <div class="section">
-            <h2>5. 知识产权</h2>
-            <p>本应用的所有内容，包括但不限于软件、界面设计、图标、文字、代码等，均受著作权法和其他知识产权法律法规的保护。</p>
-            <p>未经许可，您不得复制、修改、传播、出售本应用的任何部分。</p>
-        </div>
-
-        <div class="section">
-            <h2>6. 免责声明</h2>
-            <ul>
-                <li><strong>服务中断：</strong>因系统维护、升级或不可抗力导致的服务中断，我们不承担责任</li>
-                <li><strong>数据丢失：</strong>建议您定期备份重要数据，因设备故障等原因导致的数据丢失，我们不承担责任</li>
-                <li><strong>第三方责任：</strong>因iOS系统或其他第三方原因导致的问题，我们不承担责任</li>
-                <li><strong>使用后果：</strong>您使用本应用拨打电话产生的费用和后果由您自行承担</li>
-            </ul>
-            <p>本应用按"现状"提供，不提供任何明示或暗示的保证。</p>
-        </div>
-
-        <div class="section">
-            <h2>7. 订阅服务</h2>
-            <p>本应用提供专业版订阅服务，包含以下内容：</p>
-            <ul>
-                <li><strong>订阅周期：</strong>按月或按年订阅</li>
-                <li><strong>自动续订：</strong>订阅将自动续订，除非您在当前订阅期结束前至少24小时取消</li>
-                <li><strong>取消方式：</strong>可在iOS系统设置中管理和取消订阅</li>
-                <li><strong>退款政策：</strong>遵循App Store的退款政策</li>
-            </ul>
-            <p>订阅价格可能会有调整，调整后的价格将在续订时生效。</p>
-        </div>
-
-        <div class="section">
-            <h2>8. 协议的变更</h2>
-            <p>我们保留随时修改本协议的权利。协议变更后，我们会在应用内发布更新通知。</p>
-            <p>如果您不同意变更后的协议，可以选择停止使用本应用。继续使用本应用即表示您接受变更后的协议。</p>
-        </div>
-
-        <div class="section">
-            <h2>9. 法律适用与争议解决</h2>
-            <p>本协议的订立、执行、解释及争议解决均适用中华人民共和国法律。</p>
-            <p>如就本协议内容或其执行发生任何争议，双方应友好协商解决；协商不成时，任何一方均可向本应用运营者所在地人民法院提起诉讼。</p>
-        </div>
-
-        <div class="section">
-            <h2>10. 联系我们</h2>
-            <p>如果您对本协议有任何疑问，请通过以下方式联系我们：</p>
-            <div class="contact">
-                <p>邮箱：<a href="mailto:t9search@163.com">t9search@163.com</a></p>
+            <div class="section">
+                <h2>1. 协议的接受</h2>
+                <p>欢迎使用智能快捷拨号！在使用本应用之前，请您仔细阅读并充分理解本协议的全部内容。</p>
+                <p>您下载、安装、使用本应用即表示您已阅读并同意接受本协议的全部条款。如果您不同意本协议的任何内容，请立即停止使用本应用。</p>
             </div>
-            <p style="margin-top: 12px;">我们将在收到您的反馈后尽快回复。</p>
+
+            <div class="section">
+                <h2>2. 服务说明</h2>
+                <p>智能快捷拨号是一款提供T9智能搜索和拨号功能的iOS应用程序。本应用提供以下主要功能：</p>
+                <ul>
+                    <li><strong>T9智能搜索：</strong>支持通过号码、拼音、首字母快速搜索联系人</li>
+                    <li><strong>智能推荐：</strong>基于您的拨号习惯提供智能推荐</li>
+                    <li><strong>收藏管理：</strong>快速访问常用联系人</li>
+                    <li><strong>归属地查询：</strong>显示手机号码归属地信息</li>
+                    <li><strong>主题定制：</strong>提供多种界面主题</li>
+                    <li><strong>通讯录管理：</strong>号码优化、智能去重、空号清理</li>
+                </ul>
+                <p>本应用所有功能均在设备本地运行，不依赖网络服务。</p>
+            </div>
+
+            <div class="section">
+                <h2>3. 使用规则</h2>
+                <p>在使用本应用时，您应当遵守以下规则：</p>
+                <ul>
+                    <li><strong>合法使用：</strong>仅将本应用用于合法目的，不得用于任何违法或侵权行为</li>
+                    <li><strong>个人使用：</strong>本应用仅供个人非商业使用</li>
+                    <li><strong>系统限制：</strong>理解并接受iOS系统对第三方拨号应用的限制</li>
+                    <li><strong>权限授予：</strong>根据功能需要授予必要的系统权限</li>
+                    <li><strong>禁止行为：</strong>不得对本应用进行反向工程、反编译或破解</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>4. iOS系统限制说明</h2>
+                <p>由于iOS系统的安全机制，本应用存在以下限制：</p>
+                <ul>
+                    <li><strong>拨号确认：</strong>点击联系人后需在系统拨号界面再次确认才能拨出</li>
+                    <li><strong>通话记录：</strong>无法获取系统的通话记录，智能推荐仅基于应用内操作</li>
+                    <li><strong>后台限制：</strong>应用在后台时功能受限</li>
+                </ul>
+                <p>这些限制是iOS系统对所有第三方拨号应用的统一要求，并非本应用的缺陷。</p>
+            </div>
+
+            <div class="section">
+                <h2>5. 知识产权</h2>
+                <p>本应用的所有内容，包括但不限于软件、界面设计、图标、文字、代码等，均受著作权法和其他知识产权法律法规的保护。</p>
+                <p>未经许可，您不得复制、修改、传播、出售本应用的任何部分。</p>
+            </div>
+
+            <div class="section">
+                <h2>6. 免责声明</h2>
+                <ul>
+                    <li><strong>服务中断：</strong>因系统维护、升级或不可抗力导致的服务中断，我们不承担责任</li>
+                    <li><strong>数据丢失：</strong>建议您定期备份重要数据，因设备故障等原因导致的数据丢失，我们不承担责任</li>
+                    <li><strong>第三方责任：</strong>因iOS系统或其他第三方原因导致的问题，我们不承担责任</li>
+                    <li><strong>使用后果：</strong>您使用本应用拨打电话产生的费用和后果由您自行承担</li>
+                </ul>
+                <p>本应用按"现状"提供，不提供任何明示或暗示的保证。</p>
+            </div>
+
+            <div class="section">
+                <h2>7. 订阅服务</h2>
+                <p>本应用提供专业版订阅服务，包含以下内容：</p>
+                <ul>
+                    <li><strong>订阅周期：</strong>按月或按年订阅</li>
+                    <li><strong>自动续订：</strong>订阅将自动续订，除非您在当前订阅期结束前取消</li>
+                    <li><strong>取消方式：</strong>可在iOS系统设置中管理和取消订阅</li>
+                    <li><strong>退款政策：</strong>遵循App Store的退款政策</li>
+                </ul>
+                <p>订阅价格可能会有调整，调整后的价格将在续订时生效。</p>
+            </div>
+
+            <div class="section">
+                <h2>8. 协议的变更</h2>
+                <p>我们保留随时修改本协议的权利。协议变更后，我们会在应用内发布更新通知。</p>
+                <p>如果您不同意变更后的协议，可以选择停止使用本应用。继续使用本应用即表示您接受变更后的协议。</p>
+            </div>
+
+            <div class="section">
+                <h2>9. 法律适用与争议解决</h2>
+                <p>本协议的订立、执行、解释及争议解决均适用中华人民共和国法律。</p>
+                <p>如就本协议内容或其执行发生任何争议，双方应友好协商解决；协商不成时，任何一方均可向本应用运营者所在地人民法院提起诉讼。</p>
+            </div>
+
+            <div class="section">
+                <h2>10. 联系我们</h2>
+                <p>如果您对本协议有任何疑问，请通过以下方式联系我们：</p>
+                <div class="contact">
+                    <p>邮箱：<a href="mailto:t9search@163.com">t9search@163.com</a></p>
+                </div>
+                <p style="margin-top: 12px;">我们将在收到您的反馈后尽快回复。</p>
+            </div>
+
+            <div class="footer">
+                <p>备案号：苏ICP备2026010127号-2A</p>
+                <p style="margin-top: 8px;">© 2026 智能快捷拨号. 保留所有权利。</p>
+            </div>
         </div>
 
-        <div class="footer">
-            <p>备案号：苏ICP备2026010127号-2A</p>
-            <p style="margin-top: 8px;">© 2026 智能快捷拨号. 保留所有权利。</p>
+        <!-- 英文内容 -->
+        <div class="lang-content" data-lang="en">
+            <h1>Terms of Use</h1>
+            <p class="update-date">Updated April 12, 2026</p>
+
+            <div class="section">
+                <h2>1. Agreement</h2>
+                <p>Welcome to Smart Quick Dial. By using this app, you agree to these terms. If you don't agree, please don't use the app.</p>
+            </div>
+
+            <div class="section">
+                <h2>2. What You Get</h2>
+                <p>Smart Quick Dial is an iOS dialer with smart search. Features include:</p>
+                <ul>
+                    <li>T9 search by number, letters, or initials</li>
+                    <li>Smart contact suggestions</li>
+                    <li>Favorites and themes</li>
+                    <li>Local number attribution lookup</li>
+                    <li>Contact management: clean up duplicates and empty entries</li>
+                </ul>
+                <p>Everything works offline.</p>
+            </div>
+
+            <div class="section">
+                <h2>3. Rules</h2>
+                <ul>
+                    <li>Use it legally and personally</li>
+                    <li>Don't reverse-engineer or crack the app</li>
+                    <li>Understand iOS limits third-party dialers</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>4. iOS Limits</h2>
+                <p>iOS requires extra confirmation for calls. We can't read your call history. These are Apple rules, not ours.</p>
+            </div>
+
+            <div class="section">
+                <h2>5. IP</h2>
+                <p>All content is protected by copyright. Don't copy, modify, or resell any part of the app.</p>
+            </div>
+
+            <div class="section">
+                <h2>6. Disclaimer</h2>
+                <ul>
+                    <li>We aren't liable for service interruptions or data loss</li>
+                    <li>Back up your data regularly</li>
+                    <li>Call costs are your responsibility</li>
+                </ul>
+                <p>The app is provided as-is.</p>
+            </div>
+
+            <div class="section">
+                <h2>7. Subscriptions</h2>
+                <ul>
+                    <li>Yearly or lifetime plans available</li>
+                    <li>Yearly subscriptions auto-renew unless cancelled before renewal</li>
+                    <li>Cancel anytime in Settings</li>
+                    <li>Refunds follow App Store policy</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>8. Changes</h2>
+                <p>We may update these terms. Continuing to use the app means you accept the changes.</p>
+            </div>
+
+            <div class="section">
+                <h2>9. Law</h2>
+                <p>This agreement is governed by the laws of the jurisdiction where the developer is located.</p>
+                <p>Any dispute arising from this agreement shall first be resolved through good-faith negotiation. If negotiation fails, the dispute shall be submitted to the competent court in the developer's jurisdiction.</p>
+            </div>
+
+            <div class="section">
+                <h2>10. Contact</h2>
+                <p>Questions?</p>
+                <div class="contact">
+                    <p>Email: <a href="mailto:t9search@163.com">t9search@163.com</a></p>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>ICP Filing: Su ICP Bei 2026010127 Hao - 2A</p>
+                <p style="margin-top: 8px;">© 2026 Smart Quick Dial. All rights reserved.</p>
+            </div>
         </div>
     </div>
+
+    <script>
+        function setLang(lang) {
+            document.querySelectorAll('.lang-content').forEach(function(el) {
+                el.classList.toggle('active', el.dataset.lang === lang);
+            });
+            document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        }
+
+        // 尝试从 URL hash 读取语言偏好
+        var hash = window.location.hash;
+        if (hash === '#en') {
+            setLang('en');
+        }
+    </script>
 </body>
 </html>
